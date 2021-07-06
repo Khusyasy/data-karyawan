@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Header from "./components/Header";
+import NavbarComponent from "./components/NavbarComponent";
+import { BrowserRouter, Route } from "react-router-dom";
+import HomeContainer from "./containers/HomeContainer";
+import CreateUserContainer from "./containers/CreateUserContainer";
+import EditUserContainer from "./containers/EditUserContainer";
+import DetailUserContainer from "./containers/DetailUserContainer";
+import PegawaiContainer from "./containers/PegawaiContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <NavbarComponent />
+        <Header />
+        <BrowserRouter>
+          <Route path="/" exact component={HomeContainer} />
+          <Route path="/home" exact component={HomeContainer} />
+          <Route path="/pegawai" exact component={PegawaiContainer} />
+          <Route path="/create" exact component={CreateUserContainer} />
+
+          <Route path="/detail/:id" exact component={DetailUserContainer} />
+
+          <Route path="/edit/:id" exact component={EditUserContainer} />
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
-
-export default App;
